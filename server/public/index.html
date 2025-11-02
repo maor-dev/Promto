@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <title>AutoPromoto – יצירת קמפיין מאליאקספרס</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- אם יש לך style.css קיים בתיקיית public הוא ייטען מכאן -->
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      /* בסיס עדין למקרה שאין style.css או למילוי פערים */
+      body { font-family: system-ui, Arial, sans-serif; max-width: 900px; margin: 24px auto; padding: 0 16px; }
+      h1 { margin-bottom: 8px; }
+      .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
+      input[type="text"], textarea { padding: 10px; border: 1px solid #ccc; border-radius: 8px; min-width: 280px; }
+      button { padding: 10px 16px; border: 0; border-radius: 10px; cursor: pointer; background: #111; color: #fff; }
+      button:disabled { opacity: .6; cursor: not-allowed; }
+      .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 12px; margin-top: 8px; }
+      .hidden { display: none; }
+      .muted { color: #666; font-size: .92rem; }
+      .status { margin-top: 10px; padding: 10px; border-radius: 10px; background: #f7f7f7; }
+      .status.loading { background: #fff7e6; }
+      .status.ok { background: #e8fff0; }
+      .status.warn { background: #fff3e8; }
+      .status.err { background: #ffe8e8; }
+      pre { background: #f6f6f6; padding: 10px; border-radius: 8px; overflow: auto; }
+      a { color: #0a7; word-break: break-all; }
+      .label { font-weight: 600; margin-left: 6px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>AutoPromoto</h1>
+      <div class="muted">חפש מוצר, צור לינק שותפים, קבל תסריט מ-OpenAI וסרטון מוכר- – ואחד לפוסט מוכן.</div>
+    </header>
+
+    <!-- חיפוש מוצר -->
+    <section class="card">
+      <form id="searchForm" class="row">
+        <input id="kw" type="text" placeholder="מה לחפש? לדוגמה: 'iPhone 16 magnetic case'" />
+        <button type="submit">🔎 חפש מוצר</button>
+      </form>
+
+      <!-- תוצאה בסיסית (קישור + כותרת) -->
+      <div id="result" class="hidden">
+        <div class="row">
+          <span class="label">שם המוצר:</span>
+          <span id="title"></span>
+        </div>
+        <div class="row">
+          <span class="label">קישור למוצר:</span>
+          <a id="productLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+
+        <!-- יצירת לינק אפיליאייט -->
+        <div class="row">
+          <button id="makeAffBtn" type="button" disabled>💰 צור לינק שותפים</button>
+          <div id="affWrap" class="hidden">
+            <span class="label">לינק שותפים:</span>
+            <a id="affLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- סטטוס כללי -->
+      <div id="status" class="status"></div>
+
+      <!-- דיבוג (תוכן גולמי מהחיפוש אם צריך) -->
+      <details id="debugBox" class="hidden" style="margin-top:8px;">
+        <summary>Debug</summary>
+        <pre id="debugPre"></pre>
+      </details>
+    </section>
+
+    <!-- יצירת קמפיין (OpenAI + Nano Banana) -->
+    <section class="card">
+      <h2>🎬 יצירת קמפיין</h2>
+      <div class="row">
+        <textarea id="brief" rows="3" placeholder="בריף אופציונלי: קצר, קליט, בעברית, עם CTA בסוף" style="flex:1 1 360px;"></textarea>
+        <button id="campaignBtn" type="button">🎬 צור קמפיין</button>
+      </div>
+
+      <div id="campaignResult" style="margin-top:12px;"></div>
+    </section>
+
+    <!-- הסקריפט של צד-לקוח -->
+    <script src="./app.js"></script>
+  </body>
+</html>
