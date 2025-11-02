@@ -26,25 +26,25 @@ It connects with **AliExpress Affiliate API**, **OpenAI GPT-4o**, and **FFmpeg**
 ---
 
 ## ⚙️ Project Structure
+```bash
 AUTOPROMOTO/
 ├── server/
-│ ├── node_modules/
-│ ├── .tmp/ # Temporary videos / voice files
-│ ├── server.js # Express server logic
-│ ├── aliexpress.js # AliExpress API integration + HMAC signature
-│ └── check-env.mjs # Environment validation
+│   ├── node_modules/            # Dependencies
+│   ├── .tmp/                    # Temporary videos / voice files
+│   ├── server.js                # Express server logic
+│   ├── aliexpress.js            # AliExpress API integration + HMAC signature
+│   └── check-env.mjs            # Environment validation
+│
 ├── public/
-│ ├── app.js # Client logic (fetch + UI updates)
-│ ├── index.html # Simple search and campaign UI
-│ ├── style.css # Styling for campaign results
-│ └── videos/ # Generated output videos
-├── .env # Environment configuration
+│   ├── app.js                   # Client logic (fetch + UI updates)
+│   ├── index.html               # Simple search and campaign UI
+│   ├── style.css                # Styling for campaign results
+│   └── videos/                  # Generated output videos
+│
+├── .env                         # Environment configuration
 ├── package.json
 ├── .gitignore
 └── README.md
-
-makefile
-Copy code
 
 ---
 
