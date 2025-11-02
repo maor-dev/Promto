@@ -46,75 +46,13 @@ AUTOPROMOTO/
 ├── .gitignore
 └── README.md
 
----
-
-## 🔐 Environment Variables (`.env`)
-```env
-APP_KEY=your_aliexpress_app_key
-APP_SECRET=your_aliexpress_secret
-TRACKING_ID=mm_XXXX_YYYY_ZZZZ
-ALI_BASE_URL=https://api-sg.aliexpress.com/sync
-OPENAI_API_KEY=sk-XXXX
-OPENAI_MODEL=gpt-4o-mini
-TARGET_LANGUAGE=en
-TARGET_CURRENCY=USD
-SHIP_TO_COUNTRY=US
-PORT=4000
-🧱 API Endpoints
-POST /api/find-by-name
-Search for products on AliExpress.
-
-json
-Copy code
-{
-  "keyword": "wireless headphones"
-}
-Response:
-
-json
-Copy code
-{
-  "found": true,
-  "title": "Baseus Wireless Headphones Bluetooth 5.3",
-  "url": "https://s.click.aliexpress.com/e/_XYZabc",
-  "score": 0.97
-}
-POST /api/make-campaign
-Generate a full campaign (ad copy, TTS, video).
-
-json
-Copy code
-{
-  "affiliateUrl": "https://s.click.aliexpress.com/e/_XYZabc",
-  "productTitle": "Baseus Wireless Headphones",
-  "brief": "high quality, long battery life"
-}
-🧰 Installation & Run
-1. Clone the repo
-bash
-Copy code
+Installation & Run:
 git clone https://github.com/maor-dev/Promto.git
 cd Promto
-2. Install dependencies
-bash
-Copy code
+cd Server
 npm install
-3. Run locally
-bash
-Copy code
+npm install -D nodemon
+npm install cheerio
 npm run dev
-Then visit 👉 http://localhost:4000
 
-🧩 How It Works (Pipeline)
-1.User searches for a product by keyword.
-
-2.Server calls AliExpress API → returns product details.
-
-3.OpenAI GPT-4o creates ad text.
-
-4.TTS model converts it into a voiceover.
-
-5.FFmpeg merges the voice + image into a video.
-
-6.Frontend displays the campaign with a ready affiliate link.
 
